@@ -8,6 +8,7 @@ function Todo() {
   const [title, setTitle] = useState("");
   const [Check, setCheck] = useState(true);
   const [gender, setgender] = useState("male");
+  const [city, setcity] = useState("jamui")
   return (
     <div>
       <h1>Create Task</h1>
@@ -37,6 +38,7 @@ function Todo() {
           type="radio"
         />
         male
+        <br />
         <input
           value="female"
           onChange={(e) => setgender(e.target.value)}
@@ -44,6 +46,13 @@ function Todo() {
           type="radio"
         />
         Female
+        <br />
+        <br />
+        <select  value={city} onChange={(e) => setcity(e.target.value)}>
+          <option value="haldia">Haldia</option>
+          <option value="jamui">Jamui</option>
+          <option value="patna">Patna</option>
+        </select>
       </form>
     </div>
   );
