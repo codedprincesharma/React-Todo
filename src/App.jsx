@@ -7,7 +7,7 @@ function Todo() {
 
   const [title, setTitle] = useState("");
   const [Check, setCheck] = useState(true);
-  const [gender, setgender] = useState("female");
+  const [gender, setgender] = useState("male");
   return (
     <div>
       <h1>Create Task</h1>
@@ -31,15 +31,15 @@ function Todo() {
         <br />
         <button>Create Todo</button>
         <input
-          value={gender}
-          onChange={(e) => setgender.log(e.target.value)}
+          value="male"
+          onChange={(e) => setgender(e.target.value)}
           checked={gender == "male" && true}
           type="radio"
         />
         male
         <input
-          value={gender}
-          onChange={(e) => setgender.log(e.target.value)}
+          value="female"
+          onChange={(e) => setgender(e.target.value)}
           checked={gender == "female" && true}
           type="radio"
         />
