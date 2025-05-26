@@ -1,3 +1,4 @@
+import { nanoid } from "nanoid";
 import { useState } from "react";
 
 function Todo() {
@@ -6,54 +7,42 @@ function Todo() {
   ]);
 
   const [title, setTitle] = useState("");
-  const [Check, setCheck] = useState(true);
-  const [gender, setgender] = useState("male");
-  const [city, setcity] = useState("jamui")
+
+  const submitHandler = (e) => {
+    e.preventDefault();
+    const newtodo = {
+      id: nanoid(),
+      title: title,
+      isCompleted: false,
+    };
+
+    let copyTodos = [...todo];
+    copyTodos.push(newtodo);
+    setTodo(copyTodos);
+  };
+
+  const renderTodos = todo.map(todo => {
+    return <li key={todo.id}>{todo.title}</li>;
+  });
+
   return (
     <div>
       <h1>Create Task</h1>
-      <form action="">
+      <form action="" onSubmit={submitHandler}>
         <input
-          onChange={(e) => title.log(e.target.value)}
-          value={setTitle}
+          onChange={(e) => setTitle(e.target.value)}
+          value={title}
           type="text"
           placeholder="title"
         />
         <br />
         <br />
-        <input
-          checked={Check}
-          onChange={(e) => setCheck.log(e.target.checked)}
-          type="checkbox"
-          name=""
-          id=""
-        />
-        Completed <br />
         <br />
         <button>Create Todo</button>
-        <input
-          value="male"
-          onChange={(e) => setgender(e.target.value)}
-          checked={gender == "male" && true}
-          type="radio"
-        />
-        male
-        <br />
-        <input
-          value="female"
-          onChange={(e) => setgender(e.target.value)}
-          checked={gender == "female" && true}
-          type="radio"
-        />
-        Female
-        <br />
-        <br />
-        <select  value={city} onChange={(e) => setcity(e.target.value)}>
-          <option value="haldia">Haldia</option>
-          <option value="jamui">Jamui</option>
-          <option value="patna">Patna</option>
-        </select>
       </form>
+      <hr />
+      <h1>Pending Todos</h1>
+      <ol>{renderTodos}</ol>
     </div>
   );
 }
